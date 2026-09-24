@@ -1,0 +1,19 @@
+{
+  "test_id": "test-01",
+  "test_name": "Vulnerable dependency — PyYAML",
+  "repository": "Kolawole1208/ai-risk-predictor-vulnerable",
+  "branch": "main",
+  "finding_type": "vulnerable_dependency",
+  "scanner": "Dependabot",
+  "package": "pyyaml",
+  "installed_version": "5.1",
+  "patched_version": "5.4+",
+  "severity": "critical",
+  "cvss_score": 9.8,
+  "cve_id": "CVE-2020-14343",
+  "ghsa_id": "GHSA-8q59-q68h-6hv4",
+  "manifest": "requirements.txt",
+  "status": "open",
+  "remediation_pr": "https://github.com/Kolawole1208/ai-risk-predictor-vulnerable/pull/1",
+  "notes": "Deliberately planted to test the AI Risk Predictor dependency scanning module."
+}
