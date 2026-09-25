@@ -1,0 +1,27 @@
+{
+  "test_id": "TEST-02",
+  "name": "Multiple Vulnerabilities",
+  "purpose": "Validate whether the AI Risk Predictor detects multiple intentionally introduced security risks.",
+  "branch": "test-02-multiple-vulnerabilities",
+  "expected_findings": [
+    {
+      "file": "main.py",
+      "type": "SQL Injection",
+      "category": "Code Security",
+      "severity": "HIGH"
+    },
+    {
+      "file": "config.py",
+      "type": "Fake Stripe Test Secret",
+      "category": "Secret Scanning",
+      "severity": "HIGH"
+    },
+    {
+      "file": "requirements.txt",
+      "dependency": "pyyaml==5.1",
+      "type": "CVE-2020-14343",
+      "category": "Supply Chain",
+      "severity": "CRITICAL"
+    }
+  ]
+}
