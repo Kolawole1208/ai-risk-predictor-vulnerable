@@ -1,23 +1,37 @@
 from fastapi import FastAPI
+import sqlite3
 
-app = FastAPI(
-    title="AI Risk Predictor - Vulnerable (Clean Baseline)",
-    description="Minimal clean baseline app for the AI Risk Predictor experiments",
-)
+app = FastAPI()
 
 
 @app.get("/")
-async def read_root():
-    return {"message": "AI Risk Predictor - clean baseline"}
+def root():
+    return {"message": "AI Risk Predictor vulnerability test"}
 
 
 @app.get("/health")
-async def health():
-    return {"status": "ok"}
+def health():
+    return {"status": "healthy"}
 
 
-# Uvicorn entrypoint for local runs: `uvicorn main:app --reload`
-if __name__ == "__main__":
-    import uvicorn
+@app.get("/users")
+def get_user(username: str):
+    connection = sqlite3.connect(":memory:")
+    cursor = connection.cursor()
 
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    cursor.execute(
+        "CREATE TABLE users (id INTEGER, username TEXT)"
+    )
+
+    cursor.execute(
+        "INSERT INTO users VALUES (1, 'admin')"
+    )
+
+    # INTENTIONALLY VULNERABLE - SQL injection
+    query = "SELECT * FROM users WHERE username = '" + username + "'"
+    cursor.execute(query)
+
+    result = cursor.fetchall()
+    connection.close()
+
+    return {"users": result}

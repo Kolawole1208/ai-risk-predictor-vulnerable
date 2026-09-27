@@ -1,0 +1,14 @@
+{
+  "test_id": "TEST-03",
+  "name": "Hardcoded Credential Detection",
+  "purpose": "Validate whether the AI Risk Predictor detects intentionally hardcoded credentials in application configuration.",
+  "branch": "test-03-hardcoded-credential",
+  "expected_findings": [
+    {
+      "file": "config.py",
+      "type": "Hardcoded Password",
+      "category": "Secret Scanning",
+      "severity": "HIGH"
+    }
+  ]
+}
